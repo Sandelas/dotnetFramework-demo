@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  AZURE_WEBAPP_PACKAGE_PATH: '.'
+  AZURE_WEBAPP_PACKAGE_PATH: '.' #test
 jobs:
   build:
     runs-on: windows-latest
