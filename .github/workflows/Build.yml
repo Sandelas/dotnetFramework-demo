@@ -4,6 +4,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
 jobs:
   build:
     runs-on: windows-latest
@@ -18,7 +20,8 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1 
     - name: Build with MSBuild
       run:
-        msbuild dotnetFramework-demo.sln /p:Configuration=Release
+        msbuild dotnetFramework-demo.sln /p:Configuration=Release 
+        dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/myapp' 
     - name: 'Upload Package'
       uses: actions/upload-artifact@v1
       with:
